@@ -13,20 +13,31 @@ public class ThreadDemo {
 			tammy.setSpeed(10);
 			sammy.setSpeed(10);
 			
-			timmy.move(400);
-			tammy.move(400);
-			sammy.move(400);
+//			timmy.move(400);
+//			tammy.move(400);
+//			sammy.move(400);
+//			
+//			timmy.moveTo(400, 700);
+//			tammy.moveTo(800, 700);
+//			sammy.moveTo(1200, 700);
 			
-			timmy.moveTo(400, 700);
-			tammy.moveTo(800, 700);
-			sammy.moveTo(1200, 700);
-			
-			Thread r1 = new Thread(()->timmy.move(400));
+			Thread r1 = new Thread(()->{
+				timmy.move(400);
+				// more code can go here
+				
+			});
 			Thread r2 = new Thread(()->tammy.move(400));
 			Thread r3 = new Thread(()->sammy.move(400));
 			
 			r1.start();
 			r2.start();
+			try {
+				r1.join();
+				r2.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
 			r3.start();
 			
 	}
