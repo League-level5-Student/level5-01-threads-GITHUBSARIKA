@@ -28,7 +28,7 @@ public class ThreadDemo {
 			});
 			Thread r2 = new Thread(()-> {tammy.move(400);});
 			Thread r3 = new Thread(()->sammy.move(400));
-			
+			               
 			r1.start();
 			r2.start();
 			try {
