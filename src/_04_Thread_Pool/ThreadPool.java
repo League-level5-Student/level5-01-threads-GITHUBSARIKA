@@ -8,11 +8,12 @@ private ConcurrentLinkedQueue<Task> taskQueue;
 public ThreadPool(int totalThreads) {
 	
 	threads=new Thread[totalThreads];
+	taskQueue=new ConcurrentLinkedQueue<Task>();
 	for (int i = 0; i < threads.length; i++) {
-		Worker worker=new Worker();
+		Worker worker=new Worker(taskQueue);
 		threads[i]= new Thread(worker);
 	}
-	taskQueue=new ConcurrentLinkedQueue<Task>();
+	
 }
 public void addTask(Task task) {
 	taskQueue.add(task);
